@@ -1,17 +1,17 @@
 const express = require('express')
 const router = express.Router()
-// const alunas = require('../model/alunas.json')   ///NAO PRECISA MAIS PQ TEM NO CONTROLLER.JS
-const controller = require('../controllers/alunasController')
+/*const alunas = require('../model/alunas.json')*/
+const controller = require ('../controllers/alunasController')
 
-// router.get('/', function(req, res){
-//     res.status(200).send(alunas)
-// })
+router.get('/', controller.get)
+router.get ('/nasceuSp', controller.getSp)
+/*router.get('/', function(request, response){
+    response.status(200).send(alunas)
+}) */ //tiramos pq o controller puxa isso agora
+router.get ('/:id', controller.getById)
+router.get ("/:id/books", controller.getBooks)
+router.get ('/:id/getIdade', controller.getIdade)
+router.post("/", controller.post)
+router.post("/:id/books", controller.postBooks) //rotas que será chamado na api.
 
-router.get('/', controller.get)  //GET NESSE CASO É O NOME DA FUNCAO DEFINIDA NO CONTROLLER (NO EXPORTS)
-router.get('/nasceuSp',controller.getSp)
-router.get('/:id', controller.getById) //QUERY PARAMS É O :ID
-router.get("/:id/books",controller.getBooks)
-
-
-//suteste é criar um controller 
-module.exports = router
+module.exports =  router
